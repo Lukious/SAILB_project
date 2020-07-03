@@ -3,7 +3,12 @@
 @author: SAIBE
 """
 
+from Preprocessing import Preprocessing
+from data_loader import load_data
+
 if __name__ == '__main__':
     # Implement Code From Here!
-    print("Implement Code From Here!")
-    print("First our project code")
+    ori_data = load_data()
+    ori_data = Preprocessing(ori_data)
+    
+    
