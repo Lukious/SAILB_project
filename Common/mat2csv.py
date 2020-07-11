@@ -10,8 +10,12 @@ import os
 
 def mat2csv(filename,data):
     ori_data = scipy.io.loadmat(data)
-    pd_data = pd.Series(ori_data)
-    pd_data.to_csv("./SleepData_csv/"+filename+".csv",mode = 'w')
+    hyp=ori_data['hyp']
+    xx=ori_data['xx']
+    dfhyp = pd.DataFrame(hyp)
+    dfxx = pd.DataFrame(xx)
+    dfhyp.to_csv("./hyp/"+filename+".csv",header=False,index=False)
+    dfxx.to_csv("./xx/"+filename+".csv",header=False,index=False)
     
 
 def search(dirname):
