@@ -31,7 +31,7 @@ The trained model (both featurenet and deepsleepnet) will be stored at the **./w
 
 ## SAILB Results
 
-	<img src="./img/fig1.png" width="700">
+<img src="./img/fig1.png" width="500">
 
 ## To Do
 
