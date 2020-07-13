@@ -20,6 +20,10 @@ def mat2csv(filename,data):
 
 def search(dirname):
     filenames = os.listdir(dirname)
+    path = './hyp'
+    os.makedirs(path, exist_ok=True)
+    path = './xx'
+    os.makedirs(path, exist_ok=True)
     for filename in filenames:
         full_filename = os.path.join(dirname, filename)
         ext = os.path.splitext(full_filename)[-1]
@@ -35,6 +39,4 @@ if __name__ == '__main__':
     Dataset_dir = "SleepData"
     Dataset_dir = dir_name + Dataset_dir + '\\'
     search(Dataset_dir)
-
-
 
