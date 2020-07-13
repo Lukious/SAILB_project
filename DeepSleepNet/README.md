@@ -29,6 +29,10 @@ The trained model (both featurenet and deepsleepnet) will be stored at the **./w
 
     cat performance.txt
 
+## SAILB Results
+
+	<img src="./img/fig1.png" width="700">
+
 ## To Do
 
 * Revise 'data preparation' to split patients. For example, in test set, patients 0 - 10, valid set patients 11 - 12, test set 13 - 14.
