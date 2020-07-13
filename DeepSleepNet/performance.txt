@@ -1,80 +1,65 @@
-0 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8357142857142857
-Finetune ACC: 0.8302380952380952
-
-1 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8302380952380952
-Finetune ACC: 0.8269047619047619
-
-2 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8302380952380952
-Finetune ACC: 0.8130952380952381
-
-3 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.835
-Finetune ACC: 0.8192857142857143
-
 4 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.845
-Finetune ACC: 0.8102380952380952
+input_signal: (?, 3000, 1)
+Pre-train ACC: 0.7904761904761904
+Finetune ACC: 0.8171428571428572
 
 5 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8121428571428572
-Finetune ACC: 0.7847619047619048
+Pre-train ACC: 0.854047619047619
+Finetune ACC: 0.8195238095238095
 
 6 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8473809523809523
-Finetune ACC: 0.8476190476190476
+Pre-train ACC: 0.8476190476190476
+Finetune ACC: 0.8404761904761905
 
 7 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8576190476190476
-Finetune ACC: 0.8335714285714285
+Pre-train ACC: 0.8430952380952381
+Finetune ACC: 0.84
 
 8 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.829047619047619
-Finetune ACC: 0.7733333333333333
+Pre-train ACC: 0.8369047619047619
+Finetune ACC: 0.8423809523809523
 
 9 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8223809523809524
-Finetune ACC: 0.8178571428571428
+Pre-train ACC: 0.8271428571428572
+Finetune ACC: 0.7907142857142857
 
 10 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8192857142857143
-Finetune ACC: 0.7354761904761905
+Pre-train ACC: 0.825952380952381
+Finetune ACC: 0.8254761904761905
 
 11 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.824047619047619
-Finetune ACC: 0.8207142857142857
+Pre-train ACC: 0.8345238095238096
+Finetune ACC: 0.7907142857142857
 
 12 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8338095238095238
-Finetune ACC: 0.8419047619047619
+Pre-train ACC: 0.8326190476190476
+Finetune ACC: 0.8319047619047619
 
 13 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8345238095238096
-Finetune ACC: 0.8233333333333334
+Pre-train ACC: 0.8426190476190476
+Finetune ACC: 0.8330952380952381
 
 14 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8314285714285714
-Finetune ACC: 0.835
+Pre-train ACC: 0.8592857142857143
+Finetune ACC: 0.8445238095238096
 
 15 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8261904761904761
-Finetune ACC: 0.8345238095238096
+Pre-train ACC: 0.8426190476190476
+Finetune ACC: 0.8380952380952381
 
 16 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8530952380952381
-Finetune ACC: 0.8419047619047619
+Pre-train ACC: 0.849047619047619
+Finetune ACC: 0.8257142857142857
 
 17 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8361904761904762
-Finetune ACC: 0.8314285714285714
+Pre-train ACC: 0.8376190476190476
+Finetune ACC: 0.8464285714285714
 
 18 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8264285714285714
-Finetune ACC: 0.8157142857142857
+Pre-train ACC: 0.8328571428571429
+Finetune ACC: 0.805952380952381
 
 19 -th fold out of 20-fold cross validation
-Pre-train ACC: 0.8364285714285714
-Finetune ACC: 0.8466666666666667
+Pre-train ACC: 0.8321428571428572
+Finetune ACC: 0.8302380952380952
 
