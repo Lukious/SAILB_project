@@ -5,6 +5,9 @@ from tensorflow.keras.layers import Input, Conv1D, Dense, Dropout, MaxPool1D, Ac
 from tensorflow.keras.layers import Reshape, LSTM, TimeDistributed, Bidirectional, BatchNormalization
 from tensorflow.keras.models import load_model
 
+#random 변수는 training되지 않음
+#dropout이 0.5? 뭐를 줄이는 것인지는 모름
+
 
 def featurenet():
     activation = tf.nn.relu
@@ -19,8 +22,10 @@ def featurenet():
     # print("\nCNN1")
     cnn0 = Conv1D(
         kernel_size=50,
-        filters=64,
-        strides=6,kernel_regularizer=keras.regularizers.l2(0.001)) 
+        filters=64,                                                #가중치들의 x,y size 필터중 하나가 kernal
+        strides=6,kernel_regularizer=keras.regularizers.l2(0.001)) #strides: 이동 간격
+                                                                   #0.001수치는 우리가 건드는 것이 아님.
+                                                                   #결과를 보고 최적의 0.001을 만든다.
     s = cnn0(input_signal)
     s = BatchNormalization()(s) 
     s = Activation(activation=activation)(s)
