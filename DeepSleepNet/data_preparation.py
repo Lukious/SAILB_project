@@ -29,11 +29,11 @@ class Data_loader:
         # get file list
         file_list = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
-        data_X, data_y = [], []
+        data_X, data_y = [], [] 
         for i in range(len(file_list)):
-            with np.load(join(mypath,file_list[i])) as npz:
-                data_X.append(npz['x'])
-                data_y.append(npz['y'])
+            with np.load(join(mypath,file_list[i])) as npz:#자동으로 close 도 되는 with as 문
+                data_X.append(npz['x'])#뇌파 신호
+                data_y.append(npz['y'])#sleep stage
 
         # one-hot encoding sleep stages
         temp_y = []
@@ -142,16 +142,16 @@ class Data_loader:
 
 if __name__=="__main__":
     d = Data_loader() 
-    d.data_preparation()
+    d.data_preparation()#data 전처리
 
     path = './20_fold_data'
-    if os.path.exists(path) is False:
+    if os.path.exists(path) is False:#.'20_fold_data' 폴더 생성
         os.mkdir(path)
     
     for i in range(20):
         d.get_k_th_seq(d.X_seq, d.y_seq, i)
         d.get_k_th_data(d.X_seq_train, d.y_seq_train, d.X_seq_valid, d.y_seq_valid, d.X_seq_test, d.y_seq_test) 
-        with open(join(path,str(i)+'.npz'),'wb') as f:
+        with open(join(path,str(i)+'.npz'),'wb') as f:#전처리된 데이터 저장
             np.savez(
                 f, 
                 X_seq_train = d.X_seq_train,
