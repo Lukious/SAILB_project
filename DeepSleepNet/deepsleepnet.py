@@ -15,39 +15,43 @@ def featurenet():
     # print("input_signal:",input_signal.shape)
 
     ######### CNNs with small filter size at the first layer #########
-    # print("\nCNN1")
-    cnn0 = Conv1D(
-        kernel_size=50,
-        filters=64,                                                #가중치들의 x,y size 필터중 하나가 kernal
-        strides=6,kernel_regularizer=keras.regularizers.l2(0.001)) #strides: 이동 간격
-                                                                   #0.001수치는 우리가 건드는 것이 아님.
-                                                                   #결과를 보고 최적의 0.001을 만든다.
-    s = cnn0(input_signal) #First CNN
+    ######### Left side #########
+    # print("\nCNN1")    
+    cnn0 = Conv1D(                                                      #"[Fs/2] conv,64,/[Fs/16]"
+        kernel_size=50,                                                 
+        filters=64,                                                
+        strides=6,
+        kernel_regularizer=keras.regularizers.l2(0.001))      #Don't change 0.001                                         
+    s = cnn0(input_signal) 
     s = BatchNormalization()(s) 
     s = Activation(activation=activation)(s)
     # print("cnn0:",s.shape)
-    cnn1 = MaxPool1D(pool_size=8, strides=8)
+    
+    cnn1 = MaxPool1D(pool_size=8, strides=8)                            #"8 max-pool,/8"
     s = cnn1(s)
+    
     # print("cnn1:",s.shape)
-    cnn2 = Dropout(0.5)
+    cnn2 = Dropout(0.5)                                                 #"0.5 dropout
     s = cnn2(s)
+    
     # print("cnn2:",s.shape)
-    cnn3 = Conv1D(kernel_size=8,filters=128,strides=1,padding=padding)
+    cnn3 = Conv1D(kernel_size=8,filters=128,strides=1,padding=padding)  #"8 conv,128
     s = cnn3(s)
     s = BatchNormalization()(s)
     s = Activation(activation=activation)(s)
     # print("cnn3:",s.shape)
-    cnn4 = Conv1D(kernel_size=8,filters=128,strides=1,padding=padding)
+    cnn4 = Conv1D(kernel_size=8,filters=128,strides=1,padding=padding)  #"8 conv,128
     s = cnn4(s)
     s = BatchNormalization()(s)
     s = Activation(activation=activation)(s)
     # print("cnn4:",s.shape)
-    cnn5 = Conv1D(kernel_size=8,filters=128,strides=1,padding=padding)
+    cnn5 = Conv1D(kernel_size=8,filters=128,strides=1,padding=padding)  #"8 conv,128
     s = cnn5(s)
     s = BatchNormalization()(s)
     s = Activation(activation=activation)(s)
     # print("cnn5:",s.shape)
-    cnn6 = MaxPool1D(pool_size=4,strides=4)
+    
+    cnn6 = MaxPool1D(pool_size=4,strides=4)                             #"4 max-pool,/4"
     s = cnn6(s)
     # print("cnn6:",s.shape)
     cnn7 = Reshape((int(s.shape[1])*int(s.shape[2]),)) # Flatten
@@ -55,47 +59,57 @@ def featurenet():
     # print("cnn7:",s.shape)
 
     ######### CNNs with large filter size at the first layer #########
+    ######### Right side #########
     # print('\nCNN2')
-    cnn8 = Conv1D(
+    cnn8 = Conv1D(                                                      #"[Fsx4] conv,64,/[Fs/2]"
         kernel_size=400,
-        filters=64,strides=50,kernel_regularizer=keras.regularizers.l2(0.001))
+        filters=64,
+        strides=50,
+        kernel_regularizer=keras.regularizers.l2(0.001))
     l = cnn8(input_signal)
     l = BatchNormalization()(l)
     l = Activation(activation=activation)(l)
     # print("cnn8:",l.shape)
-    cnn9 = MaxPool1D(pool_size=4, strides=4)
+    cnn9 = MaxPool1D(pool_size=4, strides=4)                            #"4 max-pool,/4"
     l = cnn9(l)
     # print("cnn9:",l.shape)
-    cnn10 = Dropout(0.5)
+    cnn10 = Dropout(0.5)                                                #"0.5 dropout
     l = cnn10(l)
     # print("cnn10:",l.shape)
-    cnn11 = Conv1D(kernel_size=6,filters=128,strides=1,padding=padding)
+    cnn11 = Conv1D(kernel_size=6,filters=128,strides=1,padding=padding) #"6 conv,128"
     l = cnn11(l)
     l = BatchNormalization()(l)
     l = Activation(activation=activation)(l)
     # print("cnn11:",l.shape)
-    cnn12 = Conv1D(kernel_size=6,filters=128,strides=1,padding=padding)
+    cnn12 = Conv1D(kernel_size=6,filters=128,strides=1,padding=padding) #"6 conv,128"
     l = cnn12(l)
     l = BatchNormalization()(l)
     l = Activation(activation=activation)(l)
     # print("cnn12:",l.shape)
-    cnn13 = Conv1D(kernel_size=6,filters=128,strides=1,padding=padding)
+    cnn13 = Conv1D(kernel_size=6,filters=128,strides=1,padding=padding) #"6 conv,128"
     l = cnn13(l)
     l = BatchNormalization()(l)
     l = Activation(activation=activation)(l)
     # print("cnn13:",l.shape)
-    cnn14 = MaxPool1D(pool_size=2,strides=2)
+    cnn14 = MaxPool1D(pool_size=2,strides=2)                            #"4 max-pool,/4"
     l = cnn14(l)
     # print("cnn14:",l.shape)
     cnn15 = Reshape((int(l.shape[1])*int(l.shape[2]),))
     l = cnn15(l)
     # print("cnn15:",l.shape)
-
+    
+    #Finish fisrt layer
+    #s is the result of the left part of the First layer
+    #l is the result of the right part of the First layer
+    
+    ######### Merge Part #########
+    #########To go to second layer
     # print('\nMERGED')
     merged = keras.layers.concatenate([s, l])
     # print("merged:",merged.shape)
+    
     merged = Dense(1024)(merged) 
-    merged = Dropout(0.5)(merged) 
+    merged = Dropout(0.5)(merged)               
     merged = Dense(5,name='merged')(merged)
     # print('merged',merged.shape)
     pre_softmax = Activation(activation='softmax')(merged)
