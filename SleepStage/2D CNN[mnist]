@@ -32,7 +32,7 @@ X_train = X_train.astype('float32')
 X_test = X_test.astype('float32')
 X_train /= 255
 X_test /= 255
-print('X_train shape:', X_train.shape) #X_train shape: (60000, 28, 28, 1)
+print('X_train shape:', X_train.shape) #X_train shape: ( 20000, 3000, 6, 1) #[3000,6]
 
 import keras
 #set number of categories
@@ -45,15 +45,15 @@ y_test = keras.utils.to_categorical(y_test, num_category)
 model = Sequential()
 
 #convolutional layer with rectified linear unit activation
-model.add(Conv2D(32, kernel_size=(3, 3),
+model.add(Conv2D(32, kernel_size=(6, 6), # 6by6
                  activation='relu',
                  input_shape=input_shape))
 
-#32 convolution filters used each of size 3x3
+#32 convolution filters used each of size 3x3 -> 6x6
 #again
-model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(Conv2D(64, (6, 6), activation='relu')) # 3 x 3 -> 6 x 6
 
-#64 convolution filters used each of size 3x3
+#64 convolution filters used each of size 6x6
 #choose the best features via pooling
 model.add(MaxPooling2D(pool_size=(2, 2)))
 
