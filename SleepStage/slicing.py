@@ -23,7 +23,7 @@ def slicing(filename,data):
     os.makedirs("./data/"+filename[:-3]+"/1D_N1", exist_ok=True)
     os.makedirs("./data/"+filename[:-3]+"/1D_N2", exist_ok=True)
     os.makedirs("./data/"+filename[:-3]+"/1D_N3", exist_ok=True)
-    os.makedirs("./data/"+filename[:-3]+"/1D_N4", exist_ok=True)
+    os.makedirs("./data/"+filename[:-3]+"/1D_Rem", exist_ok=True)
     
     for i in y:
         if(i==0):
@@ -84,15 +84,15 @@ def slicing(filename,data):
             
         if(i==4):
             if(n4c<10):
-                np.savez("./data/"+filename[:-3]+"/1D_N4/"+"0000"+str(n4c)+".npz",x=x[t,:,0])
+                np.savez("./data/"+filename[:-3]+"/1D_Rem/"+"0000"+str(n4c)+".npz",x=x[t,:,0])
             elif(n4c>=10 and n4c<100):
-                np.savez("./data/"+filename[:-3]+"/1D_N4/"+"000"+str(n4c)+".npz",x=x[t,:,0])
+                np.savez("./data/"+filename[:-3]+"/1D_Rem/"+"000"+str(n4c)+".npz",x=x[t,:,0])
             elif(n4c>=100 and n4c<1000):
-                np.savez("./data/"+filename[:-3]+"/1D_N4/"+"00"+str(n4c)+".npz",x=x[t,:,0])
+                np.savez("./data/"+filename[:-3]+"/1D_Rem/"+"00"+str(n4c)+".npz",x=x[t,:,0])
             elif(n4c>=1000 and n4c<10000):
-                np.savez("./data/"+filename[:-3]+"/1D_N4/"+"0"+str(n4c)+".npz",x=x[t,:,0])
+                np.savez("./data/"+filename[:-3]+"/1D_Rem/"+"0"+str(n4c)+".npz",x=x[t,:,0])
             else:
-                np.savez("./data/"+filename[:-3]+"/1D_N4/"+str(n4c)+".npz",x=x[t,:,0])
+                np.savez("./data/"+filename[:-3]+"/1D_Rem/"+str(n4c)+".npz",x=x[t,:,0])
             n4c+=1
             t+=1
 
