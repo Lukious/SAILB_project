@@ -59,13 +59,18 @@ for i in range(len(data_list)):
             with np.load(join(N1_path,N1_list[j])) as npz:
                 filename, filepath = os.path.splitext(N1_list[j])
                 raw = np.reshape(npz['x'],(1,3000))
+                raw = Normalization(raw)
                 N3 = butter_bandpass_filter(raw,0.1,1,100)
+                N3 = Normalization(N3)
                 N2 = butter_bandpass_filter(raw,1,3,100)
+                N2 = Normalization(N2)
                 N1  = butter_bandpass_filter(raw,10.5,16,100)
+                N1 = Normalization(N1)
                 REM  = butter_bandpass_filter(raw,16,30,100)
+                REM = Normalization(REM)
                 Wake  = butter_bandpass_filter(raw,37,47,100)
+                Wake = Normalization(Wake)
                 data = np.concatenate((raw,Wake,REM,N1,N2,N3),axis=0)
-                data = Normalization(data)
                 np.save(join(decompo_N1_path,filename + '.npy'),data)
         
         ##N2 sleepstage's EEG decomposition   
@@ -73,13 +78,18 @@ for i in range(len(data_list)):
             with np.load(join(N2_path,N2_list[j])) as npz:
                 filename, filepath = os.path.splitext(N2_list[j])
                 raw = np.reshape(npz['x'],(1,3000))
+                raw = Normalization(raw)
                 N3 = butter_bandpass_filter(raw,0.1,1,100)
+                N3 = Normalization(N3)
                 N2 = butter_bandpass_filter(raw,1,3,100)
+                N2 = Normalization(N2)
                 N1  = butter_bandpass_filter(raw,10.5,16,100)
+                N1 = Normalization(N1)
                 REM  = butter_bandpass_filter(raw,16,30,100)
+                REM = Normalization(REM)
                 Wake  = butter_bandpass_filter(raw,37,47,100)
+                Wake = Normalization(Wake)
                 data = np.concatenate((raw,Wake,REM,N1,N2,N3),axis=0)
-                data = Normalization(data)
                 np.save(join(decompo_N2_path,filename + '.npy'),data)
             
 
@@ -88,41 +98,56 @@ for i in range(len(data_list)):
             with np.load(join(N3_path,N3_list[j])) as npz:
                 filename, filepath = os.path.splitext(N3_list[j])
                 raw = np.reshape(npz['x'],(1,3000))
+                raw = Normalization(raw)
                 N3 = butter_bandpass_filter(raw,0.1,1,100)
+                N3 = Normalization(N3)
                 N2 = butter_bandpass_filter(raw,1,3,100)
+                N2 = Normalization(N2)
                 N1  = butter_bandpass_filter(raw,10.5,16,100)
+                N1 = Normalization(N1)
                 REM  = butter_bandpass_filter(raw,16,30,100)
+                REM = Normalization(REM)
                 Wake  = butter_bandpass_filter(raw,37,47,100)
+                Wake = Normalization(Wake)
                 data = np.concatenate((raw,Wake,REM,N1,N2,N3),axis=0)
-                data = Normalization(data)
-                np.save(join(decompo_N3_path,filename + '.npy'),data)       
+                np.save(join(decompo_N3_path,filename + '.npy'),data)      
 
         ##REM sleepstage's EEG decomposition         
         for j in range(len(REM_list)):
             with np.load(join(REM_path,REM_list[j])) as npz:
                 filename, filepath = os.path.splitext(REM_list[j])
                 raw = np.reshape(npz['x'],(1,3000))
+                raw = Normalization(raw)
                 N3 = butter_bandpass_filter(raw,0.1,1,100)
+                N3 = Normalization(N3)
                 N2 = butter_bandpass_filter(raw,1,3,100)
+                N2 = Normalization(N2)
                 N1  = butter_bandpass_filter(raw,10.5,16,100)
+                N1 = Normalization(N1)
                 REM  = butter_bandpass_filter(raw,16,30,100)
+                REM = Normalization(REM)
                 Wake  = butter_bandpass_filter(raw,37,47,100)
+                Wake = Normalization(Wake)
                 data = np.concatenate((raw,Wake,REM,N1,N2,N3),axis=0)
-                data = Normalization(data)
-                np.save(join(decompo_REM_path,filename + '.npy'),data)              
+                np.save(join(decompo_REM_path,filename + '.npy'),data)             
 
         ##Wake sleepstage's EEG decomposition 
         for j in range(len(Wake_list)):
             with np.load(join(Wake_path,Wake_list[j])) as npz:
                 filename, filepath = os.path.splitext(Wake_list[j])
                 raw = np.reshape(npz['x'],(1,3000))
+                raw = Normalization(raw)
                 N3 = butter_bandpass_filter(raw,0.1,1,100)
+                N3 = Normalization(N3)
                 N2 = butter_bandpass_filter(raw,1,3,100)
+                N2 = Normalization(N2)
                 N1  = butter_bandpass_filter(raw,10.5,16,100)
+                N1 = Normalization(N1)
                 REM  = butter_bandpass_filter(raw,16,30,100)
+                REM = Normalization(REM)
                 Wake  = butter_bandpass_filter(raw,37,47,100)
+                Wake = Normalization(Wake)
                 data = np.concatenate((raw,Wake,REM,N1,N2,N3),axis=0)
-                data = Normalization(data)
                 np.save(join(decompo_Wake_path,filename + '.npy'),data)           
         
         
