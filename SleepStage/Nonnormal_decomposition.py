@@ -20,6 +20,13 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=9):
     return y
 #####################################
 
+##########Normalization##############
+def MinusMin(X):
+    Min = np.min(X)
+    X = X-Min
+    return X
+#####################################
+    
 data_path = './data'
 data_list = [f for f in listdir(data_path) if isdir(join(data_path, f))]
 
@@ -57,12 +64,18 @@ for i in range(len(data_list)):
             with np.load(join(N1_path,N1_list[j])) as npz:
                 filename, filepath = os.path.splitext(N1_list[j])
                 raw = np.reshape(npz['x'],(1,3000))
+                min_raw = MinusMin(raw)
                 N3 = butter_bandpass_filter(raw,0.1,1,100)
+                N3 = MinusMin(N3)
                 N2 = butter_bandpass_filter(raw,1,3,100)
+                N2 = MinusMin(N2)
                 N1  = butter_bandpass_filter(raw,10.5,16,100)
+                N1 = MinusMin(N1)
                 REM  = butter_bandpass_filter(raw,16,30,100)
+                REM = MinusMin(REM)
                 Wake  = butter_bandpass_filter(raw,37,47,100)
-                data = np.concatenate((raw,Wake,REM,N1,N2,N3),axis=0)
+                Wake = MinusMin(Wake)
+                data = np.concatenate((min_raw,Wake,REM,N1,N2,N3),axis=0)
                 np.save(join(decompo_N1_path,filename + '.npy'),data)
         
         ##N2 sleepstage's EEG decomposition   
@@ -70,12 +83,18 @@ for i in range(len(data_list)):
             with np.load(join(N2_path,N2_list[j])) as npz:
                 filename, filepath = os.path.splitext(N2_list[j])
                 raw = np.reshape(npz['x'],(1,3000))
+                min_raw = MinusMin(raw)
                 N3 = butter_bandpass_filter(raw,0.1,1,100)
+                N3 = MinusMin(N3)
                 N2 = butter_bandpass_filter(raw,1,3,100)
+                N2 = MinusMin(N2)
                 N1  = butter_bandpass_filter(raw,10.5,16,100)
+                N1 = MinusMin(N1)
                 REM  = butter_bandpass_filter(raw,16,30,100)
+                REM = MinusMin(REM)
                 Wake  = butter_bandpass_filter(raw,37,47,100)
-                data = np.concatenate((raw,Wake,REM,N1,N2,N3),axis=0)
+                Wake = MinusMin(Wake)
+                data = np.concatenate((min_raw,Wake,REM,N1,N2,N3),axis=0)
                 np.save(join(decompo_N2_path,filename + '.npy'),data)
             
 
@@ -84,12 +103,18 @@ for i in range(len(data_list)):
             with np.load(join(N3_path,N3_list[j])) as npz:
                 filename, filepath = os.path.splitext(N3_list[j])
                 raw = np.reshape(npz['x'],(1,3000))
+                min_raw = MinusMin(raw)
                 N3 = butter_bandpass_filter(raw,0.1,1,100)
+                N3 = MinusMin(N3)
                 N2 = butter_bandpass_filter(raw,1,3,100)
+                N2 = MinusMin(N2)
                 N1  = butter_bandpass_filter(raw,10.5,16,100)
+                N1 = MinusMin(N1)
                 REM  = butter_bandpass_filter(raw,16,30,100)
+                REM = MinusMin(REM)
                 Wake  = butter_bandpass_filter(raw,37,47,100)
-                data = np.concatenate((raw,Wake,REM,N1,N2,N3),axis=0)
+                Wake = MinusMin(Wake)
+                data = np.concatenate((min_raw,Wake,REM,N1,N2,N3),axis=0)
                 np.save(join(decompo_N3_path,filename + '.npy'),data)      
 
         ##REM sleepstage's EEG decomposition         
@@ -97,23 +122,35 @@ for i in range(len(data_list)):
             with np.load(join(REM_path,REM_list[j])) as npz:
                 filename, filepath = os.path.splitext(REM_list[j])
                 raw = np.reshape(npz['x'],(1,3000))
+                min_raw = MinusMin(raw)
                 N3 = butter_bandpass_filter(raw,0.1,1,100)
+                N3 = MinusMin(N3)
                 N2 = butter_bandpass_filter(raw,1,3,100)
+                N2 = MinusMin(N2)
                 N1  = butter_bandpass_filter(raw,10.5,16,100)
+                N1 = MinusMin(N1)
                 REM  = butter_bandpass_filter(raw,16,30,100)
+                REM = MinusMin(REM)
                 Wake  = butter_bandpass_filter(raw,37,47,100)
-                data = np.concatenate((raw,Wake,REM,N1,N2,N3),axis=0)
-                np.save(join(decompo_REM_path,filename + '.npy'),data)             
+                Wake = MinusMin(Wake)
+                data = np.concatenate((min_raw,Wake,REM,N1,N2,N3),axis=0)
+                np.save(join(decompo_REM_path,filename + '.npy'),data)            
 
         ##Wake sleepstage's EEG decomposition 
         for j in range(len(Wake_list)):
             with np.load(join(Wake_path,Wake_list[j])) as npz:
                 filename, filepath = os.path.splitext(Wake_list[j])
                 raw = np.reshape(npz['x'],(1,3000))
+                min_raw = MinusMin(raw)
                 N3 = butter_bandpass_filter(raw,0.1,1,100)
+                N3 = MinusMin(N3)
                 N2 = butter_bandpass_filter(raw,1,3,100)
+                N2 = MinusMin(N2)
                 N1  = butter_bandpass_filter(raw,10.5,16,100)
+                N1 = MinusMin(N1)
                 REM  = butter_bandpass_filter(raw,16,30,100)
+                REM = MinusMin(REM)
                 Wake  = butter_bandpass_filter(raw,37,47,100)
-                data = np.concatenate((raw,Wake,REM,N1,N2,N3),axis=0)
-                np.save(join(decompo_Wake_path,filename + '.npy'),data)
+                Wake = MinusMin(Wake)
+                data = np.concatenate((min_raw,Wake,REM,N1,N2,N3),axis=0)
+                np.save(join(decompo_Wake_path,filename + '.npy'),data)    
